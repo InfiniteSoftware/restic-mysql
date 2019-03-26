@@ -2,16 +2,18 @@ version: "3.3"
 
 services:
   app:
-    image: mazzolino/restic
+    build:
+      context: .
     hostname: docker
     environment:
-      BACKUP_CRON: "0 30 3 * * *"
-      RESTIC_REPOSITORY: b2:my-repo:/restic
-      RESTIC_PASSWORD: supersecret
-      RESTIC_BACKUP_SOURCES: /mnt/volumes
+      BACKUP_CRON: "* * * * *"
+      RESTIC_REPOSITORY: ${RESTIC_REPOSITORY}
+      RESTIC_PASSWORD: ${RESTIC_PASSWORD}
+      RESTIC_BACKUP_SOURCES: ${RESTIC_BACKUP_SOURCES}
       RESTIC_BACKUP_TAGS: docker-volumes
       RESTIC_FORGET_ARGS: --prune --keep-last 14 --keep-daily 1
-      B2_ACCOUNT_ID: xxxxxxx
-      B2_ACCOUNT_KEY: yyyyyyyy
+      STDIN_COMMAND: ${STDIN_COMMAND}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
     volumes:
       - /var/lib/docker/volumes:/mnt/volumes:ro

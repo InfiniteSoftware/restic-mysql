@@ -1,4 +1,4 @@
-# Resticker
+# restic-mysql
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/mazzolino/restic.svg)](https://hub.docker.com/r/mazzolino/restic/)
 [![Build status](https://ci.strahlungsfrei.de/api/badges/djmaze/resticker/status.svg)](https://ci.strahlungsfrei.de/djmaze/resticker)
@@ -66,4 +66,4 @@ For more targets, see the Makefile.
 
 ## Credits
 
-[restic-backup-docker](https://github.com/Lobaro/restic-backup-docker) was used as a starting point. Thanks!
+[resticker](https://github.com/djmaze/resticker) was used as a starting point. Thanks!
