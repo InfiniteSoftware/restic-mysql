@@ -3,7 +3,7 @@ set -eo pipefail
 
 RESTIC_BACKUP_SOURCES=${RESTIC_BACKUP_SOURCES:-/data}
 RESTIC_BACKUP_TAGS="${RESTIC_BACKUP_TAGS:-}"
-STDIN_COMMAND="${STDIN_COMMAND:true}"
+PREFIX_COMMAND="${PREFIX_COMMAND:true}"
 
 tags="$(echo "$RESTIC_BACKUP_TAGS" | tr "," "\n")"
 tag_options=""
@@ -14,7 +14,7 @@ done
 start=`date +%s`
 echo Starting Backup at $(date +"%Y-%m-%d %H:%M:%S")
 
-${STDIN_COMMAND} | restic backup ${tag_options} ${RESTIC_BACKUP_SOURCES}
+eval "${PREFIX_COMMAND} restic backup ${tag_options} ${RESTIC_BACKUP_SOURCES}"
 
 echo Backup successful
 
